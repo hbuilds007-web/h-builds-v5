@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlowRight Plumbing | West Midlands Emergency Plumber | Gas Safe Registered</title>
+<meta name="description" content="FlowRight Plumbing — your trusted West Midlands plumber. Gas Safe registered, 10+ years experience, 500+ jobs completed. 24/7 emergency callouts. Boiler repair, leak detection, bathroom fitting & more.">
+<meta property="og:title" content="FlowRight Plumbing | West Midlands Emergency Plumber">
+<meta property="og:description" content="Gas Safe registered plumber covering Birmingham, Wolverhampton, Dudley & the wider West Midlands. 24/7 emergency response.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2f45;
+    --orange: #f4631a;
+    --orange-light: #ff8040;
+    --white: #ffffff;
+    --off-white: #f5f2ee;
+    --text-muted: #8a9bb0;
+    --border: rgba(255,255,255,0.1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(13,27,42,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: 0.02em; }
+  .logo span { color: var(--orange); }
+  .nav-phone { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--orange); font-size: 1.1rem; text-decoration: none; }
+  .nav-phone::before { content: '📞'; font-size: 0.9rem; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; place-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0f2035 100%);
+    padding-top: 80px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(244,99,26,0.03) 40px,
+      rgba(244,99,26,0.03) 80px
+    );
+  }
+  .hero-pipe {
+    position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+    width: 400px; height: 400px; opacity: 0.06;
+    font-size: 400px; line-height: 1;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; text-align: center; padding: 2rem; max-width: 800px; }
+  .emergency-badge {
+    display: inline-block;
+    background: var(--orange); color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.15em;
+    padding: 0.4rem 1.2rem; border-radius: 2px;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 800; line-height: 0.9;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.6; }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--orange); color: var(--white);
+    padding: 1rem 2rem; border: none; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 1rem 2rem; cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--orange); transform: translateY(-2px); }
+
+  /* TRUST BADGES */
+  .trust-bar {
+    background: var(--orange); padding: 1.2rem 2rem;
+    display: flex; justify-content: center; align-items: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 0.6rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.05em; }
+  .trust-icon { font-size: 1.4rem; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 0.8rem;
+  }
+  h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800; line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 500px; line-height: 1.6; margin-bottom: 3rem; }
+
+  /* SERVICES */
+  .services { background: var(--navy-mid); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5px; background: var(--border); }
+  .service-card {
+    background: var(--navy); padding: 2rem;
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .service-card:hover { border-left-color: var(--orange); background: var(--navy-mid); }
+  .service-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .service-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+  /* STATS */
+  .stats { background: var(--navy); }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; }
+  .stat { text-align: center; padding: 2rem; border: 1px solid var(--border); }
+  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 4rem; font-weight: 800; color: var(--orange); line-height: 1; }
+  .stat-label { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--navy-mid); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .testimonial {
+    background: var(--navy); padding: 2rem;
+    border-top: 3px solid var(--orange);
+  }
+  .stars { color: var(--orange); font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .testimonial p { font-size: 0.98rem; line-height: 1.7; color: #cdd6e3; font-style: italic; margin-bottom: 1.2rem; }
+  .testimonial-author { font-weight: 600; font-size: 0.9rem; color: var(--text-muted); }
+  .testimonial-author strong { color: var(--white); display: block; }
+
+  /* COVERAGE */
+  .coverage { background: var(--navy); }
+  .coverage-grid { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .area-tag {
+    background: rgba(244,99,26,0.1); border: 1px solid rgba(244,99,26,0.3);
+    color: var(--orange); padding: 0.4rem 1rem;
+    font-size: 0.9rem; font-weight: 500;
+  }
+
+  /* FORM */
+  .contact { background: var(--navy-mid); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:600px){ .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1/-1; }
+  label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+  input, select, textarea {
+    background: var(--navy); border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white); padding: 0.85rem 1rem; font-family: 'Barlow', sans-serif; font-size: 0.98rem;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--orange); }
+  select option { background: var(--navy); }
+  textarea { resize: vertical; min-height: 120px; }
+  .form-submit { margin-top: 0.5rem; }
+
+  /* FOOTER */
+  footer {
+    background: #060e17; padding: 2rem;
+    text-align: center; color: var(--text-muted); font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--orange); text-decoration: none; }
+
+  /* SUCCESS */
+  .success-msg { display: none; background: var(--orange); color: var(--white); padding: 1rem 1.5rem; font-weight: 600; margin-top: 1rem; }
+
+  @media(max-width:768px){
+    nav { padding: 1rem; }
+    .trust-bar { gap: 1.5rem; }
+    section { padding: 3.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Flow<span>Right</span></div>
+  <a class="nav-phone" href="tel:01213001234">0121 300 1234</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="emergency-badge">⚡ 24/7 Emergency Response Available</div>
+    <h1>West Midlands<br><span>Plumbers</span><br>You Can Trust</h1>
+    <p>Gas Safe registered, fully insured, and on call when it matters. Serving Birmingham and the wider West Midlands for over a decade.</p>
+    <div class="hero-ctas">
+      <a href="tel:01213001234" class="btn-primary">📞 Call for Emergency</a>
+      <a href="#contact" class="btn-outline">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🔵</span>Gas Safe Registered</div>
+  <div class="trust-item"><span class="trust-icon">⭐</span>10+ Years Experience</div>
+  <div class="trust-item"><span class="trust-icon">🏆</span>500+ Jobs Completed</div>
+  <div class="trust-item"><span class="trust-icon">✅</span>Fully Insured</div>
+</div>
+
+<section class="services">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2>Our Plumbing Services</h2>
+    <p class="section-sub">From emergency callouts to full bathroom installations — we handle every plumbing job, big or small, across the West Midlands.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔥</div>
+        <h3>Boiler Repair & Servicing</h3>
+        <p>Gas Safe certified engineers diagnose and fix all boiler makes and models. Annual servicing to keep your warranty valid and heating reliable.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💧</div>
+        <h3>Leak Detection</h3>
+        <p>Using the latest detection equipment to find concealed leaks quickly, minimising damage and disruption to your home or business.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛁</div>
+        <h3>Bathroom Fitting</h3>
+        <p>Full bathroom suite installations, wet rooms, and shower enclosures. Supply and fit or fit-only service available.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌀</div>
+        <h3>Drain Unblocking</h3>
+        <p>High-pressure jetting and manual clearance for blocked drains, sinks, and toilets. Emergency same-day response available.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Radiator Installation</h3>
+        <p>New radiator fitting, bleeding, replacement, and full system balancing to maximise your heating efficiency and cut energy bills.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Full Replumbs</h3>
+        <p>Complete replumbing for older properties, extensions, and new builds. Copper and plastic pipework, fully documented on completion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="section-label">By the Numbers</div>
+    <h2>Why Customers Come Back</h2>
+    <div class="stats-grid" style="margin-top:2.5rem">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Jobs Completed</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Emergency Response</div></div>
+      <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">Customer Reviews</div>
+    <h2>What Our Clients Say</h2>
+    <div class="testimonials-grid" style="margin-top:2.5rem">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Called FlowRight at 11pm with a burst pipe. They were at my door in under an hour and had it sorted before midnight. Absolute lifesavers — professional from start to finish."</p>
+        <div class="testimonial-author"><strong>Karen T.</strong>Sutton Coldfield</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Had a new bathroom fitted from scratch. The team were tidy, polite, and finished ahead of schedule. Couldn't be happier with how it turned out. Will definitely use again."</p>
+        <div class="testimonial-author"><strong>Marcus J.</strong>Solihull</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Boiler gave up in January. FlowRight diagnosed the fault same morning and had the parts fitted by afternoon. Fair price, no hard sell. Exactly what you want from a plumber."</p>
+        <div class="testimonial-author"><strong>Diane F.</strong>Dudley</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="coverage">
+  <div class="container">
+    <div class="section-label">Coverage Area</div>
+    <h2>Serving the West Midlands</h2>
+    <p class="section-sub">Based in Birmingham, we cover the full West Midlands region. No call-out charge within 15 miles.</p>
+    <div class="coverage-grid">
+      <span class="area-tag">Birmingham</span><span class="area-tag">Wolverhampton</span><span class="area-tag">Dudley</span><span class="area-tag">Walsall</span><span class="area-tag">West Bromwich</span><span class="area-tag">Solihull</span><span class="area-tag">Sutton Coldfield</span><span class="area-tag">Coventry</span><span class="area-tag">Stourbridge</span><span class="area-tag">Halesowen</span><span class="area-tag">Smethwick</span><span class="area-tag">Oldbury</span><span class="area-tag">Tipton</span><span class="area-tag">Wednesbury</span><span class="area-tag">Redditch</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <h2>Request a Quote</h2>
+    <p class="section-sub">Fill in the form and we'll get back to you within 2 hours. For emergencies, call us directly on <a href="tel:01213001234" style="color:var(--orange)">0121 300 1234</a>.</p>
+    <form id="contactForm" onsubmit="handleSubmit(event)" style="max-width:700px">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="07700 000000" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label for="jobtype">Job Type</label>
+          <select id="jobtype" name="jobtype" required>
+            <option value="">Select a service</option>
+            <option>Emergency Callout</option>
+            <option>Boiler Repair / Service</option>
+            <option>Leak Detection</option>
+            <option>Bathroom Fitting</option>
+            <option>Drain Unblocking</option>
+            <option>Radiator Installation</option>
+            <option>Full Replumb</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="message">Tell Us About the Job</label>
+          <textarea id="message" name="message" placeholder="Describe the issue or work needed..."></textarea>
+        </div>
+        <div class="form-group full form-submit">
+          <button type="submit" class="btn-primary" style="width:100%;cursor:pointer">Send Enquiry</button>
+        </div>
+      </div>
+      <div class="success-msg" id="successMsg">✅ Thanks! We'll be in touch within 2 hours.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 FlowRight Plumbing Ltd · Gas Safe Reg. No. 123456 · <a href="tel:01213001234">0121 300 1234</a> · West Midlands</p>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('successMsg').style.display = 'block';
+  e.target.reset();
+  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 5000);
+}
+</script>
+</body>
+</html>
