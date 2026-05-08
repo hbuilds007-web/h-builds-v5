@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenfield Landscapes | Garden Design & Landscaping | West Midlands</title>
+<meta name="description" content="Greenfield Landscapes — award-winning garden design and landscaping across the West Midlands. Decking, paving, planting schemes, lawn care, and seasonal maintenance contracts. Request a free consultation.">
+<meta property="og:title" content="Greenfield Landscapes | Garden Design | West Midlands">
+<meta property="og:description" content="Transforming West Midlands gardens — from design to planting to long-term maintenance. Get a free project consultation today.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a2e1a;
+    --forest-mid: #243324;
+    --forest-light: #2e4028;
+    --leaf: #4a7c3f;
+    --leaf-bright: #5d9e50;
+    --stone: #e8e0d0;
+    --stone-mid: #d4c9b4;
+    --cream: #f5f0e8;
+    --muted: rgba(232,224,208,0.5);
+    --border: rgba(255,255,255,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--forest); color: var(--stone); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(26,46,26,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--stone); }
+  .logo span { color: var(--leaf-bright); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 400; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--stone); }
+  .nav-cta {
+    background: var(--leaf); color: var(--cream);
+    padding: 0.6rem 1.4rem; text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--leaf-bright); }
+  @media(max-width:700px){ .nav-links { display: none; } }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; position: relative;
+    display: flex; align-items: center;
+    padding-top: 80px; overflow: hidden;
+    background: var(--forest);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 80% at 50% 120%, rgba(74,124,63,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(74,124,63,0.1) 0%, transparent 50%);
+  }
+  /* Decorative botanical shapes */
+  .hero-leaf {
+    position: absolute; right: -100px; top: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50% 50% 50% 0;
+    background: rgba(74,124,63,0.08);
+    transform: rotate(-30deg);
+  }
+  .hero-leaf2 {
+    position: absolute; right: 100px; bottom: -150px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(74,124,63,0.05);
+  }
+  .hero-inner { position: relative; z-index: 1; padding: 3rem 2.5rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+  .season-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(74,124,63,0.2); border: 1px solid rgba(74,124,63,0.3);
+    padding: 0.5rem 1.2rem; color: var(--leaf-bright);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 700; line-height: 0.95; color: var(--stone);
+    margin-bottom: 1.8rem; max-width: 700px;
+  }
+  .hero h1 em { font-style: italic; color: var(--leaf-bright); }
+  .hero p { font-size: 1.05rem; color: var(--muted); max-width: 440px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--leaf); color: var(--cream);
+    padding: 1rem 2rem; text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--leaf-bright); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid rgba(232,224,208,0.2); color: var(--stone);
+    padding: 1rem 2rem; text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; transition: border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--leaf-bright); color: var(--leaf-bright); }
+
+  /* SEASONAL OFFER */
+  .offer-banner {
+    background: var(--leaf); padding: 1.2rem 2rem;
+    display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    text-align: center;
+  }
+  .offer-banner p { font-size: 0.92rem; }
+  .offer-tag { background: rgba(255,255,255,0.2); padding: 0.3rem 0.8rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; }
+
+  /* SHARED */
+  section { padding: 5rem 2.5rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--leaf-bright); margin-bottom: 0.8rem; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.05; margin-bottom: 1rem; color: var(--stone); }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 460px; line-height: 1.8; margin-bottom: 3rem; font-weight: 300; }
+
+  /* SERVICES */
+  .services { background: var(--forest-mid); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1px; background: rgba(255,255,255,0.06); }
+  .service-card { background: var(--forest-mid); padding: 2.2rem; transition: background 0.2s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--leaf-bright); transition: width 0.3s; }
+  .service-card:hover { background: var(--forest-light); }
+  .service-card:hover::after { width: 100%; }
+  .svc-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; font-weight: 300; }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--forest); }
+  .filter-tabs { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 0.5rem 1.2rem; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 400;
+    border: 1px solid rgba(232,224,208,0.15); background: transparent; color: var(--muted);
+    transition: all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover { border-color: var(--leaf-bright); color: var(--leaf-bright); background: rgba(74,124,63,0.1); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
+  .portfolio-item { background: var(--forest-mid); overflow: hidden; cursor: pointer; }
+  .portfolio-visual { aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 5rem; background: var(--forest-light); position: relative; overflow: hidden; transition: transform 0.3s; }
+  .portfolio-item:hover .portfolio-visual { transform: scale(1.03); }
+  .portfolio-info { padding: 1.2rem; }
+  .portfolio-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .portfolio-info p { color: var(--muted); font-size: 0.85rem; font-weight: 300; }
+  .portfolio-tag { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--leaf-bright); margin-top: 0.5rem; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--forest-mid); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.5rem; }
+  .testimonial { background: var(--forest); padding: 2rem; border-top: 2px solid var(--leaf); }
+  .stars { color: var(--leaf-bright); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .testimonial p { color: var(--stone-mid); font-size: 0.92rem; line-height: 1.75; font-style: italic; margin-bottom: 1.2rem; font-weight: 300; }
+  .t-author strong { display: block; font-size: 0.9rem; color: var(--stone); }
+  .t-author span { font-size: 0.82rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact { background: var(--forest); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 700px; }
+  @media(max-width:600px){ .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1/-1; }
+  label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  input, select, textarea {
+    background: var(--forest-mid); border: 1px solid rgba(255,255,255,0.08);
+    color: var(--stone); padding: 0.9rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--leaf-bright); }
+  select option { background: var(--forest-mid); }
+  textarea { resize: vertical; min-height: 110px; }
+  .success-msg { display: none; background: var(--leaf); color: var(--cream); padding: 1rem 1.5rem; font-weight: 500; margin-top: 1rem; font-size: 0.9rem; }
+
+  footer { background: #0d1a0d; padding: 2rem; text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  footer a { color: var(--leaf-bright); text-decoration: none; }
+
+  @media(max-width:768px){ nav { padding: 1rem 1.2rem; } section { padding: 3.5rem 1.2rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Green<span>field</span> Landscapes</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Free Consultation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-leaf"></div>
+  <div class="hero-leaf2"></div>
+  <div class="hero-inner">
+    <div class="season-tag">🌿 Spring is the perfect time to transform your garden</div>
+    <h1>Gardens<br>that <em>breathe</em></h1>
+    <p>Thoughtful landscape design and expert maintenance for West Midlands gardens. From blank canvas to living, breathing outdoor space.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Free Consultation</a>
+      <a href="#portfolio" class="btn-ghost">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<div class="offer-banner">
+  <span class="offer-tag">🌸 SPRING OFFER</span>
+  <p>10% off new garden design projects booked before 30 June 2025 — <strong>mention code SPRING10</strong></p>
+  <a href="#contact" style="background:rgba(255,255,255,0.2);padding:0.4rem 1rem;text-decoration:none;color:#fff;font-size:0.85rem">Claim Offer</a>
+</div>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2>Our Landscaping Services</h2>
+    <p class="section-sub">Every garden is different. We offer a complete range of landscaping and maintenance services tailored to your space and your style.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="svc-icon">✏️</div><h3>Garden Design</h3><p>Bespoke garden design from concept to planting plan. We work to your brief, your budget, and your lifestyle — whether it's a low-maintenance haven or a show garden.</p></div>
+      <div class="service-card"><div class="svc-icon">🌿</div><h3>Lawn Care & Turfing</h3><p>New lawn installation, scarification, aeration, overseeding, and seasonal treatment programmes. Healthy lawns that stay green through summer and autumn.</p></div>
+      <div class="service-card"><div class="svc-icon">🪵</div><h3>Decking & Paving</h3><p>Composite and hardwood decking, natural stone and block paving, patios and pathways. Beautifully installed and built to withstand the British weather.</p></div>
+      <div class="service-card"><div class="svc-icon">🌸</div><h3>Planting Schemes</h3><p>Seasonal and perennial planting designed for year-round interest. Native species, cottage gardens, contemporary schemes — we'll match your aesthetic perfectly.</p></div>
+      <div class="service-card"><div class="svc-icon">💧</div><h3>Irrigation Systems</h3><p>Automated irrigation to keep your garden thriving with minimum effort. Smart systems, drip lines, and pop-up sprinklers professionally installed and programmed.</p></div>
+      <div class="service-card"><div class="svc-icon">🗓️</div><h3>Maintenance Contracts</h3><p>Monthly and seasonal maintenance packages to keep your garden looking its best all year round. Fortnightly or monthly visits — we fit around you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <h2>Recent Projects</h2>
+    <div class="filter-tabs">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('design', this)">Garden Design</button>
+      <button class="filter-btn" onclick="filterProjects('hard', this)">Hard Landscaping</button>
+      <button class="filter-btn" onclick="filterProjects('planting', this)">Planting</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+      <div class="portfolio-item" data-cat="design">
+        <div class="portfolio-visual">🌳</div>
+        <div class="portfolio-info">
+          <h4>Complete Garden Redesign, Sutton Coldfield</h4>
+          <p>1,200m² family garden — lawn, decked entertaining area, planting borders, and feature water element.</p>
+          <span class="portfolio-tag">Garden Design</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-cat="hard">
+        <div class="portfolio-visual">🧱</div>
+        <div class="portfolio-info">
+          <h4>Indian Sandstone Patio, Harborne</h4>
+          <p>Hand-laid Indian sandstone patio with raised sleeper beds and integrated low-voltage lighting.</p>
+          <span class="portfolio-tag">Hard Landscaping</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-cat="planting">
+        <div class="portfolio-visual">🌺</div>
+        <div class="portfolio-info">
+          <h4>Cottage Planting Scheme, Solihull</h4>
+          <p>Perennial planting scheme for year-round colour — mix of native and ornamental species throughout.</p>
+          <span class="portfolio-tag">Planting</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-cat="hard">
+        <div class="portfolio-visual">🪵</div>
+        <div class="portfolio-info">
+          <h4>Composite Decking, Wolverhampton</h4>
+          <p>Multi-level composite decking with built-in seating, glass balustrade, and mood lighting.</p>
+          <span class="portfolio-tag">Hard Landscaping</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-cat="design">
+        <div class="portfolio-visual">🌿</div>
+        <div class="portfolio-info">
+          <h4>Low-Maintenance Courtyard, Edgbaston</h4>
+          <p>Contemporary courtyard design — gravel garden, architectural planting, and automated irrigation.</p>
+          <span class="portfolio-tag">Garden Design</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-cat="planting">
+        <div class="portfolio-visual">🌲</div>
+        <div class="portfolio-info">
+          <h4>Wildflower Meadow, Knowle</h4>
+          <p>600m² wildflower meadow established from scratch with native British seed mixes and meadow paths.</p>
+          <span class="portfolio-tag">Planting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">Client Stories</div>
+    <h2>Gardens Our Clients Love</h2>
+    <div class="testimonials-grid" style="margin-top:2.5rem">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"We handed Greenfield a overgrown mess and they handed back a beautiful family garden. From design to planting, every detail was considered. We're out there every weekend now."</p>
+        <div class="t-author"><strong>Helen & Rob C.</strong><span>Sutton Coldfield</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"The patio is stunning. They recommended the sandstone, the pattern, the pointing colour — and they were absolutely right. It looks like it's always been there."</p>
+        <div class="t-author"><strong>David L.</strong><span>Harborne, Birmingham</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"We're on the monthly maintenance contract and it's brilliant. Garden always looks immaculate and we don't have to think about it. Worth every penny."</p>
+        <div class="t-author"><strong>Anita S.</strong><span>Solihull</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <h2>Start Your Project</h2>
+    <p class="section-sub">Tell us about your garden and we'll arrange a free consultation at your property — no obligation, no pressure.</p>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-grid">
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="07700 000000" required></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com"></div>
+        <div class="form-group">
+          <label>Project Type</label>
+          <select required>
+            <option value="">Select project type</option>
+            <option>Garden Design (Full)</option>
+            <option>Lawn Care / Turfing</option>
+            <option>Decking</option>
+            <option>Paving / Patio</option>
+            <option>Planting Scheme</option>
+            <option>Irrigation System</option>
+            <option>Maintenance Contract</option>
+            <option>Other / General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Approximate Garden Size</label>
+          <select>
+            <option value="">Select size</option>
+            <option>Small (under 50m²)</option>
+            <option>Medium (50–150m²)</option>
+            <option>Large (150–500m²)</option>
+            <option>Very Large (500m²+)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Timeline</label>
+          <select>
+            <option value="">When to start?</option>
+            <option>Spring 2025 (ASAP)</option>
+            <option>Summer 2025</option>
+            <option>Autumn 2025</option>
+            <option>Planning ahead — 2026</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Tell Us About Your Garden</label><textarea placeholder="What are you looking to achieve? Any particular styles or plants in mind?"></textarea></div>
+        <div class="form-group full"><button type="submit" class="btn-primary" style="cursor:pointer;width:100%">Request Free Consultation →</button></div>
+      </div>
+      <div class="success-msg" id="successMsg">🌿 Thank you — we'll be in touch within 2 working days to arrange your free consultation.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Greenfield Landscapes Ltd · <a href="tel:01215001234">0121 500 1234</a> · West Midlands · Fully Insured</p>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('successMsg').style.display = 'block';
+  e.target.reset();
+  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 6000);
+}
+
+function filterProjects(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
+  });
+}
+</script>
+</body>
+</html>
