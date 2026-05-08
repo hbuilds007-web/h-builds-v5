@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brushwork & Co. | Painter & Decorator | West Midlands</title>
+<meta name="description" content="Brushwork & Co. — trusted West Midlands painter and decorator with 15 years experience. Interior and exterior painting, wallpaper hanging, feature walls, commercial spaces, and colour consultation. Booking enquiries welcome.">
+<meta property="og:title" content="Brushwork & Co. | Painter & Decorator | West Midlands">
+<meta property="og:description" content="West Midlands painters and decorators. Immaculate finishes, expert colour advice, 15 years experience. Book your free consultation today.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --offwhite: #f7f4ef;
+    --offwhite-warm: #ede9e1;
+    --offwhite-dark: #e2ddd5;
+    --teal: #1f5c5c;
+    --teal-mid: #276b6b;
+    --teal-bright: #2e8080;
+    --teal-light: rgba(31,92,92,0.08);
+    --dark: #1a2525;
+    --text: #3a3a3a;
+    --muted: #8a8a8a;
+    --border: rgba(31,92,92,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito Sans', sans-serif; background: var(--offwhite); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(247,244,239,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Libre Baskerville', serif; font-size: 1.35rem; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; }
+  .logo span { color: var(--teal); font-style: italic; }
+  .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--teal); color: var(--offwhite);
+    padding: 0.65rem 1.5rem; text-decoration: none;
+    font-size: 0.85rem; font-weight: 600;
+    transition: background 0.2s;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--teal-bright); }
+  @media(max-width:700px){ .nav-links { display: none; } }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; position: relative;
+    background: var(--offwhite); overflow: hidden;
+    display: flex; align-items: center; padding-top: 80px;
+  }
+  .hero-split {
+    position: absolute; top: 0; right: 0; width: 45%; height: 100%;
+    background: var(--teal);
+  }
+  .hero-split::before {
+    content: '';
+    position: absolute; top: 0; left: -80px; bottom: 0; width: 160px;
+    background: var(--offwhite);
+    clip-path: polygon(0 0, 80px 0, 0% 100%);
+  }
+  .hero-split-text {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    padding: 2rem 2rem 2rem 5rem;
+  }
+  .split-visual {
+    display: flex; flex-direction: column; gap: 1rem; width: 100%;
+  }
+  .split-sample {
+    display: grid; grid-template-columns: 1fr 1fr;
+    aspect-ratio: 16/9; border-radius: 4px; overflow: hidden;
+  }
+  .sample-before { background: #c0b8ae; display: flex; align-items: flex-end; padding: 0.8rem; }
+  .sample-after { background: var(--teal-mid); display: flex; align-items: flex-end; padding: 0.8rem; }
+  .sample-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+  .sample-label.dark { color: var(--dark); }
+  .sample-label.light { color: var(--offwhite); }
+  .split-divider { display: flex; align-items: center; gap: 0.5rem; color: rgba(247,244,239,0.5); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .split-divider::before, .split-divider::after { content: ''; flex: 1; height: 1px; background: rgba(247,244,239,0.15); }
+  .colour-dots { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .colour-dot { width: 28px; height: 28px; border-radius: 50%; }
+
+  .hero-inner { position: relative; z-index: 1; padding: 3rem 2.5rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+  .hero-content { max-width: 500px; }
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 2rem;
+  }
+  .hero-kicker::before { content: ''; width: 30px; height: 2px; background: var(--teal); }
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--dark); margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--teal); }
+  .hero p { font-size: 1.05rem; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; max-width: 400px; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal); color: var(--offwhite);
+    padding: 1rem 2rem; text-decoration: none;
+    font-size: 0.9rem; font-weight: 600;
+    transition: background 0.2s, transform 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--teal-bright); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1.5px solid rgba(31,92,92,0.2); color: var(--teal);
+    padding: 1rem 2rem; text-decoration: none;
+    font-size: 0.9rem; font-weight: 600; transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--teal); background: var(--teal-light); }
+
+  /* SHARED */
+  section { padding: 5rem 2.5rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.8rem; }
+  h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: var(--dark); }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 460px; line-height: 1.8; margin-bottom: 3rem; font-weight: 300; }
+
+  /* SERVICES */
+  .services { background: var(--offwhite-warm); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.5rem; }
+  .service-card {
+    background: var(--offwhite); padding: 2.2rem;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(31,92,92,0.1); }
+  .svc-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .service-card h3 { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--dark); }
+  .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; font-weight: 300; }
+
+  /* COLOUR INSPIRATION */
+  .colours { background: var(--offwhite); }
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; }
+  .palette-card { border-radius: 4px; overflow: hidden; }
+  .palette-swatch { aspect-ratio: 1; }
+  .palette-info { background: var(--offwhite-warm); padding: 0.8rem; border: 1px solid var(--offwhite-dark); border-top: none; }
+  .palette-name { font-family: 'Libre Baskerville', serif; font-size: 0.85rem; font-weight: 700; color: var(--dark); margin-bottom: 0.2rem; }
+  .palette-desc { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+
+  /* ABOUT */
+  .about { background: var(--teal); color: var(--offwhite); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  @media(max-width:700px){ .about-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .about .section-label { color: rgba(247,244,239,0.5); }
+  .about h2 { color: var(--offwhite); }
+  .about p { color: rgba(247,244,239,0.75); line-height: 1.8; margin-bottom: 1.2rem; font-weight: 300; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .about-stat { border-top: 1px solid rgba(247,244,239,0.15); padding-top: 1rem; }
+  .about-stat .num { font-family: 'Libre Baskerville', serif; font-size: 2.5rem; font-weight: 700; color: var(--offwhite); }
+  .about-stat .label { font-size: 0.82rem; color: rgba(247,244,239,0.55); font-weight: 300; margin-top: 0.2rem; }
+  .about-visual { aspect-ratio: 1; background: var(--teal-mid); display: grid; place-items: center; font-size: 6rem; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--offwhite-warm); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.5rem; }
+  .testimonial { background: var(--offwhite); padding: 2rem; border: 1px solid var(--border); }
+  .stars { color: var(--teal); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .testimonial p { color: #5a5a5a; font-size: 0.93rem; line-height: 1.8; font-style: italic; margin-bottom: 1.2rem; font-weight: 300; }
+  .t-author strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--dark); }
+  .t-author span { font-size: 0.82rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact { background: var(--offwhite); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 700px; }
+  @media(max-width:600px){ .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1/-1; }
+  label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  input, select, textarea {
+    background: var(--offwhite-warm); border: 1px solid var(--offwhite-dark);
+    color: var(--dark); padding: 0.9rem 1rem; font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--teal); }
+  select option { background: var(--offwhite); }
+  textarea { resize: vertical; min-height: 110px; }
+  .success-msg { display: none; background: var(--teal); color: var(--offwhite); padding: 1rem 1.5rem; font-weight: 600; margin-top: 1rem; font-size: 0.9rem; }
+
+  footer { background: var(--dark); padding: 2rem; text-align: center; color: rgba(247,244,239,0.45); font-size: 0.85rem; }
+  footer a { color: rgba(247,244,239,0.7); text-decoration: none; }
+  footer a:hover { color: var(--offwhite); }
+
+  @media(max-width:768px){ 
+    nav { padding: 1rem 1.2rem; }
+    section { padding: 3.5rem 1.2rem; }
+    .hero-split { display: none; }
+    .hero h1 { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Brushwork <span>& Co.</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#colours">Colours</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-cta">Book a Consultation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-split">
+    <div class="hero-split-text">
+      <div class="split-visual">
+        <div class="split-sample">
+          <div class="sample-before"><span class="sample-label dark">Before</span></div>
+          <div class="sample-after"><span class="sample-label light">After</span></div>
+        </div>
+        <div class="split-divider">Colour Changes Everything</div>
+        <div class="colour-dots">
+          <div class="colour-dot" style="background:#2e8080"></div>
+          <div class="colour-dot" style="background:#1f5c5c"></div>
+          <div class="colour-dot" style="background:#4e9090"></div>
+          <div class="colour-dot" style="background:#f7f4ef"></div>
+          <div class="colour-dot" style="background:#e8e0d0"></div>
+          <div class="colour-dot" style="background:#c8a882"></div>
+          <div class="colour-dot" style="background:#3a4a3a"></div>
+          <div class="colour-dot" style="background:#b0826e"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-kicker">West Midlands · 15 Years Experience</div>
+      <h1>Your home,<br><em>beautifully</em><br>painted.</h1>
+      <p>Expert painting and decorating with a meticulous eye for detail. From feature walls to full house redecorations — we make spaces feel new.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Book a Consultation</a>
+        <a href="#services" class="btn-ghost">Our Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">Services</div>
+    <h2>What We Offer</h2>
+    <p class="section-sub">A complete decorating service for homes and businesses — every room, every surface, inside and out.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="svc-icon">🖌️</div><h3>Interior Painting</h3><p>Ceilings, walls, woodwork, and skirtings. Proper preparation, quality materials, and a finish that lasts. Two and three-coat systems as standard.</p></div>
+      <div class="service-card"><div class="svc-icon">🏠</div><h3>Exterior Painting</h3><p>Masonry, render, timber fascias, windows, and doors. Fully weather-sealed finishes that protect your property and elevate its kerb appeal.</p></div>
+      <div class="service-card"><div class="svc-icon">📋</div><h3>Wallpaper Hanging</h3><p>Specialist hanging of all wallpaper types — luxury vinyls, grasscloths, murals, and paste-the-wall papers. Pattern-matched to perfection.</p></div>
+      <div class="service-card"><div class="svc-icon">✨</div><h3>Feature Walls</h3><p>Statement paint effects, limewash, textured finishes, and statement wallpapers. We'll help you design something truly distinctive.</p></div>
+      <div class="service-card"><div class="svc-icon">🏢</div><h3>Commercial Spaces</h3><p>Offices, restaurants, retail, and communal areas. Out-of-hours working available to minimise disruption to your business.</p></div>
+      <div class="service-card"><div class="svc-icon">🎨</div><h3>Colour Consultation</h3><p>Not sure which colours to choose? Our colour consultation service takes the stress out of choosing — we'll visit your home with samples and expert guidance.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="colours" id="colours">
+  <div class="container">
+    <div class="section-label">Colour Inspiration</div>
+    <h2>Our Favourite Palettes</h2>
+    <p class="section-sub">Colour is the most transformative tool in any room. Here are some of our favourite trending palettes — available in any brand.</p>
+    <div class="palette-grid">
+      <div class="palette-card">
+        <div class="palette-swatch" style="background:#1f5c5c"></div>
+        <div class="palette-info"><div class="palette-name">Deep Teal</div><div class="palette-desc">Bold & calming</div></div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-swatch" style="background:#e8e4da"></div>
+        <div class="palette-info"><div class="palette-name">Warm White</div><div class="palette-desc">Timeless & airy</div></div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-swatch" style="background:#4a5240"></div>
+        <div class="palette-info"><div class="palette-name">Sage Green</div><div class="palette-desc">Natural & organic</div></div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-swatch" style="background:#c8a882"></div>
+        <div class="palette-info"><div class="palette-name">Warm Sand</div><div class="palette-desc">Cosy & inviting</div></div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-swatch" style="background:#2a2a35"></div>
+        <div class="palette-info"><div class="palette-name">Midnight</div><div class="palette-desc">Dramatic & rich</div></div>
+      </div>
+      <div class="palette-card">
+        <div class="palette-swatch" style="background:#b05a4e"></div>
+        <div class="palette-info"><div class="palette-name">Terracotta</div><div class="palette-desc">Warm & earthy</div></div>
+      </div>
+    </div>
+    <p style="margin-top:2rem;color:var(--muted);font-size:0.88rem;font-weight:300">We work with Farrow & Ball, Little Greene, Dulux, and Zinsser — every colour, every finish.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="section-label">About Us</div>
+        <h2>Craftsmanship you can see</h2>
+        <p>Brushwork & Co. was founded on a simple belief: decorating done properly transforms a space completely. We've been bringing that belief into West Midlands homes and businesses for over 15 years.</p>
+        <p>Every job — from a single room to a full house — gets the same meticulous preparation, quality materials, and clean, professional finish. We take pride in our work because we know you'll see it every day.</p>
+        <div class="about-stats">
+          <div class="about-stat"><div class="num">15yr</div><div class="label">Experience</div></div>
+          <div class="about-stat"><div class="num">800+</div><div class="label">Rooms Decorated</div></div>
+          <div class="about-stat"><div class="num">4.9★</div><div class="label">Average Rating</div></div>
+          <div class="about-stat"><div class="num">100%</div><div class="label">Fully Insured</div></div>
+        </div>
+      </div>
+      <div class="about-visual">🎨</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">Client Reviews</div>
+    <h2>Rooms People Love</h2>
+    <div class="testimonials-grid" style="margin-top:2.5rem">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"We had the whole house done — every room. The finish is absolutely immaculate. The team were considerate, tidy, and got through the job efficiently. Would not go anywhere else."</p>
+        <div class="t-author"><strong>Sarah M.</strong><span>Edgbaston, Birmingham</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"The colour consultation was worth every penny. I was stuck between three shades for months. The advice was spot on and the finished wall looks exactly as described. Brilliant service."</p>
+        <div class="t-author"><strong>Chris L.</strong><span>Sutton Coldfield</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Exterior of our Victorian terrace was in a sorry state. Brushwork stripped it back, prepped properly, and painted it beautifully. Neighbours have already asked who did it."</p>
+        <div class="t-author"><strong>Jo & Mark H.</strong><span>Moseley, Birmingham</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Book Now</div>
+    <h2>Request a Booking</h2>
+    <p class="section-sub">Tell us about your project and we'll get back to you with availability and a free no-obligation quote.</p>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-grid">
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="07700 000000" required></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com"></div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select required>
+            <option value="">Select service</option>
+            <option>Interior Painting</option>
+            <option>Exterior Painting</option>
+            <option>Wallpaper Hanging</option>
+            <option>Feature Wall</option>
+            <option>Commercial Space</option>
+            <option>Colour Consultation</option>
+            <option>Full House Redecoration</option>
+            <option>Other / Unsure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Approximate Rooms</label>
+          <select>
+            <option value="">Number of rooms</option>
+            <option>1 Room</option>
+            <option>2–3 Rooms</option>
+            <option>4–6 Rooms</option>
+            <option>Whole House</option>
+            <option>Commercial Property</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Start Date</label>
+          <select>
+            <option value="">When to start?</option>
+            <option>As soon as possible</option>
+            <option>Within 4 weeks</option>
+            <option>1–3 months</option>
+            <option>Later in the year</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Additional Details</label><textarea placeholder="Any specific finishes, colours, or details we should know about?"></textarea></div>
+        <div class="form-group full"><button type="submit" class="btn-primary" style="cursor:pointer;width:100%">Send Booking Enquiry →</button></div>
+      </div>
+      <div class="success-msg" id="successMsg">✅ Enquiry received — we'll be in touch within 24 hours to confirm your consultation.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Brushwork & Co. Ltd · <a href="tel:01218001234">0121 800 1234</a> · West Midlands · Fully Insured</p>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('successMsg').style.display = 'block';
+  e.target.reset();
+  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 6000);
+}
+</script>
+</body>
+</html>
