@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Accounting Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #162d50;
+    --emerald: #1a6b4a;
+    --emerald-light: #2d8f64;
+    --sage: #e8f5ef;
+    --gold: #c4972e;
+    --light: #f7f9fc;
+    --text: #1a2535;
+    --muted: #6b7a8d;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(13,31,60,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 6%; height: 72px;
+  }
+  .logo { display: flex; align-items: center; gap: 0.6rem; }
+  .logo-icon { width: 36px; height: 36px; background: var(--navy); display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 700; font-size: 1rem; }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+  .logo-sub { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); display: block; margin-top: -2px; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--emerald); }
+  .nav-cta { background: var(--navy); color: var(--white); padding: 0.6rem 1.5rem; font-size: 0.85rem; font-weight: 600; border: none; cursor: pointer; transition: background 0.3s; }
+  .nav-cta:hover { background: var(--emerald); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--navy); }
+  .mobile-menu { display: none; position: fixed; top: 72px; left: 0; width: 100%; background: var(--white); padding: 2rem 6%; z-index: 99; flex-direction: column; gap: 1.5rem; border-top: 1px solid rgba(13,31,60,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+  .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 500; }
+  .mobile-menu.open { display: flex; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    background: var(--navy);
+    position: relative; overflow: hidden; padding: 0 6%;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-accent {
+    position: absolute; right: 0; top: 0; width: 50%; height: 100%;
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--emerald) 100%);
+    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+    opacity: 0.4;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 620px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.4rem 1rem; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; animation: fadeUp 0.7s ease both; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; color: var(--white); line-height: 1.15; animation: fadeUp 0.7s 0.15s ease both; }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-desc { margin-top: 1.5rem; font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.65); max-width: 480px; animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.45s ease both; }
+  .btn-white { background: var(--white); color: var(--navy); padding: 0.9rem 2rem; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.3s; }
+  .btn-white:hover { background: var(--sage); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--white); padding: 0.9rem 2rem; font-weight: 500; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s; }
+  .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+  .hero-trust { margin-top: 4rem; display: flex; gap: 2rem; animation: fadeUp 0.7s 0.6s ease both; }
+  .trust-item { text-align: center; }
+  .trust-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold); }
+  .trust-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SERVICES */
+  .services { padding: 7rem 6%; background: var(--light); }
+  .sec-eyebrow { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--emerald); font-weight: 600; margin-bottom: 0.5rem; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--navy); line-height: 1.2; }
+  .sec-title em { font-style: italic; color: var(--emerald); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+  .service-card {
+    background: var(--white); padding: 2.5rem; border: 1px solid rgba(13,31,60,0.06);
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .service-card::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 3px; background: var(--emerald); transition: width 0.4s; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(13,31,60,0.08); }
+  .service-card:hover::after { width: 100%; }
+  .service-icon { width: 48px; height: 48px; background: var(--sage); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.5rem; }
+  .service-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+  .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-top: 0.7rem; }
+
+  /* ABOUT */
+  .about { padding: 7rem 6%; background: var(--white); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-visual {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, var(--emerald) 100%);
+    height: 480px; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-visual-text { font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(255,255,255,0.15); font-style: italic; text-align: center; padding: 2rem; }
+  .about-values { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .value-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; border: 1px solid rgba(13,31,60,0.07); }
+  .value-check { width: 24px; height: 24px; background: var(--emerald); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+  .value-text strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--navy); }
+  .value-text span { font-size: 0.82rem; color: var(--muted); }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 7rem 6%; background: var(--navy); }
+  .testimonials .sec-eyebrow { color: var(--gold); }
+  .testimonials .sec-title { color: var(--white); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+  .testimonial-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; }
+  .stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; }
+  .testimonial-text { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.7; margin-top: 1rem; font-style: italic; }
+  .testimonial-author { margin-top: 1.5rem; font-weight: 600; color: var(--white); font-size: 0.85rem; }
+  .testimonial-role { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+  /* CTA */
+  .cta-section { padding: 7rem 6%; background: var(--sage); text-align: center; }
+  .cta-section .sec-title { color: var(--navy); margin-bottom: 1rem; }
+  .cta-section p { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto 2.5rem; }
+  .btn-navy { background: var(--navy); color: var(--white); padding: 1rem 2.5rem; font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; }
+  .btn-navy:hover { background: var(--emerald); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: var(--text); padding: 3rem 6%; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+  .footer-brand .logo-text { color: var(--white); font-size: 1.4rem; }
+  .footer-desc { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-top: 0.7rem; line-height: 1.6; max-width: 260px; }
+  .footer-col h4 { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.85rem; margin-bottom: 0.5rem; transition: color 0.3s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 2.5rem; padding-top: 1.5rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-visual { height: 260px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-trust { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <div class="logo-text">Meridian</div>
+      <span class="logo-sub">Accounting Group</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Free Consultation</button>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#testimonials" onclick="toggleMenu()">Clients</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Trusted Since 2008</div>
+    <h1>Financial Clarity<br>for <em>Ambitious</em><br>Businesses</h1>
+    <p class="hero-desc">Meridian provides expert accounting, tax strategy, and financial advisory services that help businesses grow with confidence and precision.</p>
+    <div class="hero-cta">
+      <button class="btn-white">Schedule Consultation</button>
+      <button class="btn-ghost">View Our Services</button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="trust-num">450+</div><div class="trust-label">Client Businesses</div></div>
+      <div class="trust-item"><div class="trust-num">17</div><div class="trust-label">Years Experience</div></div>
+      <div class="trust-item"><div class="trust-num">98%</div><div class="trust-label">Client Retention</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <p class="sec-eyebrow">What We Do</p>
+  <h2 class="sec-title">Comprehensive<br><em>Financial Services</em></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-title">Tax Planning & Filing</div>
+      <div class="service-desc">Strategic tax planning minimizes liabilities while keeping you fully compliant. Business and personal returns handled with precision.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <div class="service-title">Bookkeeping & Payroll</div>
+      <div class="service-desc">Accurate monthly bookkeeping, payroll processing, and reconciliation so you always know where your business stands.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📈</div>
+      <div class="service-title">CFO Advisory</div>
+      <div class="service-desc">Part-time CFO services including cash flow forecasting, budgeting, and financial strategy for growing companies.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <div class="service-title">Business Structuring</div>
+      <div class="service-desc">Optimal entity selection and structuring advice for new ventures and transitions, with full incorporation support.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-title">Audit Support</div>
+      <div class="service-desc">Representation and full support during HMRC or IRS audits. We handle correspondence so you don't have to.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💼</div>
+      <div class="service-title">Estate & Succession</div>
+      <div class="service-desc">Protect and transfer wealth efficiently. Estate planning integrated with your overall tax and financial strategy.</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-visual-text">"Numbers tell the story of your business — we make sure it's a good one."</div>
+    </div>
+    <div>
+      <p class="sec-eyebrow">About Meridian</p>
+      <h2 class="sec-title">A Partner,<br>Not Just an <em>Accountant</em></h2>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-top:1rem;">Founded in 2008, Meridian Accounting Group has grown from a boutique practice to a trusted financial partner for over 450 businesses across multiple industries. Our team of CPAs and financial advisors brings institutional expertise with personal attention.</p>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-check">✓</div>
+          <div class="value-text"><strong>Certified & Regulated</strong><span>All partners are fully CPA certified and registered</span></div>
+        </div>
+        <div class="value-item">
+          <div class="value-check">✓</div>
+          <div class="value-text"><strong>Proactive Communication</strong><span>Monthly reports, not silence until tax season</span></div>
+        </div>
+        <div class="value-item">
+          <div class="value-check">✓</div>
+          <div class="value-text"><strong>Industry Specialists</strong><span>Dedicated teams for retail, tech, healthcare & property</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <p class="sec-eyebrow">Client Stories</p>
+  <h2 class="sec-title">What Our<br>Clients Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Meridian transformed our financial reporting. We finally understand our numbers and can make strategic decisions with confidence."</div>
+      <div class="testimonial-author">Sarah Mitchell</div>
+      <div class="testimonial-role">CEO, Bloom Retail Co.</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Saved us over $40K in taxes in the first year alone. The team is proactive, knowledgeable, and always available when we need them."</div>
+      <div class="testimonial-author">James Okafor</div>
+      <div class="testimonial-role">Founder, TechPath Labs</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"We've grown from 3 to 45 employees under Meridian's guidance. Their payroll and CFO services have been invaluable to our growth."</div>
+      <div class="testimonial-author">Linda Park</div>
+      <div class="testimonial-role">Director, Park Medical Group</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <p class="sec-eyebrow">Get Started</p>
+  <h2 class="sec-title">Ready to Gain Financial Clarity?</h2>
+  <p>Book a free 30-minute consultation. No obligations, just honest advice tailored to your situation.</p>
+  <button class="btn-navy">Book a Free Consultation →</button>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-text" style="font-family:'Playfair Display',serif;color:white;font-size:1.4rem;">Meridian</div>
+      <p class="footer-desc">Expert accounting and financial advisory services for businesses that are serious about growth.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Tax Planning</a>
+      <a href="#">Bookkeeping</a>
+      <a href="#">CFO Advisory</a>
+      <a href="#">Audit Support</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">(020) 7946 0512</a>
+      <a href="#">info@meridianag.com</a>
+      <a href="#">42 Fleet Street, London</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Meridian Accounting Group. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
