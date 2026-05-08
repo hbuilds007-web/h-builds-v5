@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pearl Dental Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0d9e8a;
+    --teal-dark: #077a6a;
+    --teal-light: #e0f5f2;
+    --sky: #e8f6f9;
+    --mint: #f0fbf8;
+    --navy: #0f2a3d;
+    --text: #1e3a4a;
+    --muted: #6b8a96;
+    --white: #ffffff;
+    --coral: #f07060;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--text); font-family: 'Nunito', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(13,158,138,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 6%; height: 70px;
+  }
+  .logo { display: flex; align-items: center; gap: 0.6rem; }
+  .logo-dot { width: 28px; height: 28px; background: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
+  .logo-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+  .logo-name span { color: var(--teal); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 600; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta { background: var(--teal); color: white; padding: 0.6rem 1.5rem; border: none; font-size: 0.85rem; font-weight: 700; font-family: 'Nunito', sans-serif; cursor: pointer; border-radius: 50px; transition: all 0.3s; }
+  .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 5px 15px rgba(13,158,138,0.3); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: white; padding: 2rem 6%; z-index: 99; flex-direction: column; gap: 1.5rem; border-top: 1px solid rgba(13,158,138,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+  .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 600; }
+  .mobile-menu.open { display: flex; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; background: var(--mint);
+    display: flex; align-items: center; padding: 5rem 6% 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute; right: -100px; top: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(13,158,138,0.12), transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-blob2 {
+    position: absolute; left: 30%; bottom: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(13,158,138,0.07), transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; width: 100%; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(13,158,138,0.1); border: 1px solid rgba(13,158,138,0.2); color: var(--teal); font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; padding: 0.35rem 0.9rem; border-radius: 50px; margin-bottom: 1.2rem; animation: pop 0.6s ease both; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 800; color: var(--navy); line-height: 1.1; animation: pop 0.6s 0.1s ease both; }
+  .hero h1 span { color: var(--teal); }
+  .hero-desc { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-top: 1.2rem; max-width: 420px; animation: pop 0.6s 0.2s ease both; }
+  .hero-cta { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; animation: pop 0.6s 0.3s ease both; }
+  .btn-teal { background: var(--teal); color: white; padding: 0.9rem 2rem; border: none; border-radius: 50px; font-size: 0.9rem; font-weight: 700; font-family: 'Nunito', sans-serif; cursor: pointer; transition: all 0.3s; box-shadow: 0 5px 20px rgba(13,158,138,0.3); }
+  .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(13,158,138,0.4); }
+  .btn-clear { background: transparent; color: var(--teal); padding: 0.9rem 2rem; border: 2px solid var(--teal); border-radius: 50px; font-size: 0.9rem; font-weight: 700; font-family: 'Nunito', sans-serif; cursor: pointer; transition: all 0.3s; }
+  .btn-clear:hover { background: var(--teal-light); }
+  .hero-features { display: flex; gap: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap; animation: pop 0.6s 0.4s ease both; }
+  .hero-feat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+  .hero-feat::before { content: '✓'; width: 20px; height: 20px; background: var(--teal); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+  /* Dental visual */
+  .hero-visual { position: relative; animation: pop 0.6s 0.2s ease both; }
+  .dental-card {
+    background: white; border-radius: 24px; padding: 3rem 2.5rem;
+    box-shadow: 0 30px 80px rgba(13,158,138,0.12);
+    text-align: center; max-width: 360px; margin: 0 auto;
+  }
+  .dental-icon { font-size: 5rem; margin-bottom: 1.5rem; display: block; }
+  .dental-rating { display: flex; justify-content: center; gap: 0.3rem; color: #ffa000; font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .dental-reviews { font-size: 0.82rem; color: var(--muted); }
+  .stat-chips { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+  .chip { background: var(--teal-light); color: var(--teal); border-radius: 50px; padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 700; }
+  @keyframes pop { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+  /* SERVICES */
+  .services { padding: 6rem 6%; background: var(--white); }
+  .section-top { text-align: center; margin-bottom: 3rem; }
+  .sec-eyebrow { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); font-weight: 700; }
+  .sec-h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--navy); margin-top: 0.3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .svc-card {
+    padding: 2rem; border-radius: 16px; border: 2px solid rgba(13,158,138,0.1);
+    transition: all 0.3s; background: var(--white);
+  }
+  .svc-card:hover { border-color: var(--teal); background: var(--mint); transform: translateY(-4px); box-shadow: 0 15px 40px rgba(13,158,138,0.1); }
+  .svc-icon-wrap { width: 52px; height: 52px; background: var(--teal-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+  .svc-name { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+  .svc-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-top: 0.5rem; }
+
+  /* TEAM */
+  .team { padding: 6rem 6%; background: var(--sky); }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .team-card { background: white; border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+  .team-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(13,158,138,0.12); }
+  .team-photo { height: 280px; display: flex; align-items: center; justify-content: center; font-size: 4rem; background: linear-gradient(135deg, var(--teal-light), var(--mint)); }
+  .team-info { padding: 1.5rem; }
+  .team-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+  .team-role { font-size: 0.78rem; color: var(--teal); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 0.2rem; }
+  .team-bio { font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; line-height: 1.5; }
+
+  /* WHY */
+  .why { padding: 6rem 6%; background: var(--teal); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .why .sec-eyebrow { color: rgba(255,255,255,0.7); }
+  .why .sec-h2 { color: white; }
+  .why-card { text-align: center; padding: 1.5rem; }
+  .why-num { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: rgba(255,255,255,0.25); line-height: 1; }
+  .why-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: white; margin-top: 0.5rem; }
+  .why-text { font-size: 0.83rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-top: 0.4rem; }
+
+  /* BOOKING */
+  .booking { padding: 6rem 6%; background: var(--navy); }
+  .booking-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .booking .sec-eyebrow { color: var(--teal); }
+  .booking .sec-h2 { color: white; text-align: left; }
+  .booking p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.8; margin-top: 0.8rem; }
+  .booking-contacts { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .bcontact { display: flex; align-items: center; gap: 0.8rem; font-size: 0.88rem; color: rgba(255,255,255,0.75); }
+  .bcontact-icon { width: 36px; height: 36px; background: rgba(13,158,138,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+  .booking-form { display: flex; flex-direction: column; gap: 0.9rem; }
+  .b-input { padding: 0.9rem 1.2rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: 'Nunito', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.3s; }
+  .b-input::placeholder { color: rgba(255,255,255,0.3); }
+  .b-input:focus { border-color: var(--teal); background: rgba(13,158,138,0.08); }
+  .b-submit { background: var(--teal); color: white; padding: 1rem; border: none; border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+  .b-submit:hover { background: var(--teal-dark); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: #0a1e2c; padding: 2rem 6%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .foot-logo { font-family: 'Syne', sans-serif; font-weight: 700; color: white; font-size: 1.1rem; }
+  .foot-logo span { color: var(--teal); }
+  .foot-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-visual { order: -1; }
+    .dental-card { max-width: 100%; }
+    .booking-inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-dot">✦</div>
+    <div class="logo-name">Pearl <span>Dental</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#booking">Book</a></li>
+  </ul>
+  <button class="nav-cta">Book Appointment</button>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#team" onclick="toggleMenu()">Our Team</a>
+  <a href="#booking" onclick="toggleMenu()">Book Appointment</a>
+</div>
+
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-layout">
+    <div>
+      <div class="hero-badge">😊 Gentle • Modern • Trusted</div>
+      <h1>Your Smile<br>Deserves <span>The Best</span></h1>
+      <p class="hero-desc">Pearl Dental Studio offers gentle, expert care with the latest technology for a healthy, beautiful smile you'll love showing off.</p>
+      <div class="hero-cta">
+        <button class="btn-teal">Book a Free Checkup</button>
+        <button class="btn-clear">Our Services</button>
+      </div>
+      <div class="hero-features">
+        <span class="hero-feat">Same-day appointments</span>
+        <span class="hero-feat">Sedation available</span>
+        <span class="hero-feat">Insurance accepted</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dental-card">
+        <span class="dental-icon">🦷</span>
+        <div class="dental-rating">★★★★★</div>
+        <div class="dental-reviews">4.9 stars from 842 reviews</div>
+        <div class="stat-chips">
+          <span class="chip">12+ Years</span>
+          <span class="chip">5,000+ Patients</span>
+          <span class="chip">3 Dentists</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-top">
+    <p class="sec-eyebrow">Complete Dental Care</p>
+    <h2 class="sec-h2">Everything for Your Smile</h2>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon-wrap">🔍</div>
+      <div class="svc-name">Checkups & Cleaning</div>
+      <div class="svc-desc">Regular exams and professional cleanings to keep your teeth healthy and bright.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon-wrap">✨</div>
+      <div class="svc-name">Teeth Whitening</div>
+      <div class="svc-desc">Professional whitening treatments for a noticeably brighter smile in one visit.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon-wrap">😁</div>
+      <div class="svc-name">Invisalign & Braces</div>
+      <div class="svc-desc">Discreet orthodontic solutions to straighten your smile comfortably and effectively.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon-wrap">🦷</div>
+      <div class="svc-name">Dental Implants</div>
+      <div class="svc-desc">Permanent, natural-looking tooth replacements for a complete, confident smile.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon-wrap">💎</div>
+      <div class="svc-name">Veneers & Bonding</div>
+      <div class="svc-desc">Cosmetic restorations to correct chips, gaps, and discolouration perfectly.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon-wrap">🚨</div>
+      <div class="svc-name">Emergency Dental</div>
+      <div class="svc-desc">Same-day emergency care for toothaches, broken teeth, and urgent dental issues.</div>
+    </div>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="section-top">
+    <p class="sec-eyebrow">Friendly Experts</p>
+    <h2 class="sec-h2">Meet Your Dentists</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo">👩‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">Dr. Sarah Chen</div>
+        <div class="team-role">Principal Dentist</div>
+        <div class="team-bio">15 years experience in cosmetic and restorative dentistry. Patients love her calm, caring approach.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">👨‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">Dr. Marcus Reid</div>
+        <div class="team-role">Orthodontist</div>
+        <div class="team-bio">Invisalign specialist with a passion for creating confident smiles through precision alignment.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">👩‍⚕️</div>
+      <div class="team-info">
+        <div class="team-name">Dr. Anika Patel</div>
+        <div class="team-role">Oral Surgeon</div>
+        <div class="team-bio">Implant and surgical specialist known for her gentle technique and excellent outcomes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="section-top">
+    <p class="sec-eyebrow">Why Choose Pearl</p>
+    <h2 class="sec-h2">A Different Kind of Dental Experience</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-title">Pain-Free Technology</div>
+      <div class="why-text">Digital x-rays, laser dentistry, and gentle techniques mean minimal discomfort.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-title">Flexible Scheduling</div>
+      <div class="why-text">Early morning, evening, and weekend appointments to fit your busy life.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-title">Transparent Pricing</div>
+      <div class="why-text">Clear pricing before treatment. We work with most major insurance providers.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <div class="why-title">Family Friendly</div>
+      <div class="why-text">Welcoming to patients of all ages — from toddlers to grandparents.</div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="booking-inner">
+    <div>
+      <p class="sec-eyebrow">Get Started</p>
+      <h2 class="sec-h2" style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;">Book Your<br>Appointment</h2>
+      <p>Your first checkup is on us. No pressure, just friendly, professional care from our team.</p>
+      <div class="booking-contacts">
+        <div class="bcontact"><span class="bcontact-icon">📞</span>(020) 7946 2200</div>
+        <div class="bcontact"><span class="bcontact-icon">✉️</span>hello@pearldental.com</div>
+        <div class="bcontact"><span class="bcontact-icon">📍</span>88 Harley Street, London W1</div>
+      </div>
+    </div>
+    <div class="booking-form">
+      <input class="b-input" type="text" placeholder="Your Name">
+      <input class="b-input" type="email" placeholder="Email Address">
+      <input class="b-input" type="tel" placeholder="Phone Number">
+      <select class="b-input" style="cursor:pointer;">
+        <option style="color:#333">Select a Service</option>
+        <option>Checkup & Cleaning</option>
+        <option>Teeth Whitening</option>
+        <option>Invisalign Consultation</option>
+        <option>Dental Implant Consult</option>
+        <option>Emergency Appointment</option>
+      </select>
+      <input class="b-input" type="date">
+      <button class="b-submit">Book My Appointment 😊</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Pearl <span>Dental</span> Studio</div>
+  <div class="foot-copy">© 2025 Pearl Dental Studio. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
