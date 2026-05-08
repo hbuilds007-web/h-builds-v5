@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMBERS — Modern Grill & Bar</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #0c1510;
+    --forest: #142218;
+    --mid-green: #1f3829;
+    --amber: #d4862a;
+    --amber-light: #e8a54a;
+    --cream: #f5ede0;
+    --cream-dark: #ead9c3;
+    --muted: #8a9e8e;
+    --white: #ffffff;
+    --red: #8c2b1a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--deep); color: var(--cream); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 6%; height: 75px; transition: background 0.4s;
+  }
+  nav.scrolled { background: rgba(12,21,16,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212,134,42,0.15); }
+  .logo { font-family: 'Libre Baskerville', serif; font-size: 1.6rem; font-weight: 700; color: var(--amber); letter-spacing: 5px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: rgba(245,237,224,0.7); text-decoration: none; font-size: 0.83rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--amber); }
+  .nav-reserve { border: 1px solid var(--amber); color: var(--amber); padding: 0.5rem 1.4rem; background: transparent; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Space Grotesk', sans-serif; transition: all 0.3s; }
+  .nav-reserve:hover { background: var(--amber); color: var(--deep); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 1px; background: var(--amber); }
+  .mobile-menu { display: none; position: fixed; top: 75px; left: 0; width: 100%; background: var(--forest); padding: 2rem 6%; z-index: 99; flex-direction: column; gap: 1.5rem; border-top: 1px solid rgba(212,134,42,0.15); }
+  .mobile-menu a { color: var(--cream); text-decoration: none; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; }
+  .mobile-menu.open { display: flex; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    background: var(--deep); position: relative; overflow: hidden;
+  }
+  .hero-video-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(212,134,42,0.12), transparent),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(140,43,26,0.15), transparent),
+      radial-gradient(ellipse 80% 50% at 50% 20%, rgba(31,56,41,0.5), transparent);
+  }
+  .hero-grill-lines {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(212,134,42,1) 40px);
+  }
+  .hero-content { position: relative; z-index: 1; padding: 0 6%; max-width: 750px; }
+  .hero-pretext { font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase; color: var(--amber); margin-bottom: 1.5rem; animation: appear 1s ease both; }
+  .hero h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(3.5rem, 8vw, 7.5rem); font-weight: 700; color: var(--cream); line-height: 0.9; letter-spacing: -1px; animation: appear 1s 0.15s ease both; }
+  .hero h1 em { color: var(--amber); font-style: italic; display: block; }
+  .hero-divider { display: flex; align-items: center; gap: 1.5rem; margin: 2rem 0; animation: appear 1s 0.3s ease both; }
+  .divider-line { flex: 1; height: 1px; background: rgba(212,134,42,0.3); max-width: 80px; }
+  .divider-text { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+  .hero-desc { font-size: 1rem; color: rgba(245,237,224,0.6); line-height: 1.8; max-width: 440px; animation: appear 1s 0.4s ease both; }
+  .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; animation: appear 1s 0.55s ease both; }
+  .btn-amber { background: var(--amber); color: var(--deep); padding: 1rem 2.5rem; border: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; cursor: pointer; transition: all 0.3s; }
+  .btn-amber:hover { background: var(--amber-light); transform: translateY(-2px); }
+  .btn-border { background: transparent; color: var(--cream); padding: 1rem 2.5rem; border: 1px solid rgba(245,237,224,0.25); font-size: 0.85rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; cursor: pointer; transition: all 0.3s; }
+  .btn-border:hover { border-color: var(--amber); color: var(--amber); }
+  .hero-right { position: absolute; right: 6%; bottom: 10%; animation: appear 1s 0.7s ease both; display: flex; flex-direction: column; gap: 1.5rem; }
+  .hr-item { text-align: right; }
+  .hr-num { font-family: 'Libre Baskerville', serif; font-size: 2.5rem; color: var(--amber); line-height: 1; }
+  .hr-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+  @keyframes appear { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* TICKER */
+  .ticker { background: var(--amber); padding: 0.8rem 0; overflow: hidden; }
+  .ticker-inner { display: flex; gap: 4rem; animation: tickscroll 25s linear infinite; white-space: nowrap; }
+  .ticker-item { font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--deep); }
+  .ticker-sep { color: var(--red); }
+  @keyframes tickscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* MENU SECTION */
+  .menu-section { padding: 7rem 6%; background: var(--forest); }
+  .menu-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; }
+  .sec-label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--amber); }
+  .sec-title { font-family: 'Libre Baskerville', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--cream); line-height: 1.1; margin-top: 0.3rem; }
+  .sec-title em { font-style: italic; color: var(--amber); }
+  .menu-tabs { display: flex; gap: 0; margin-top: 3rem; border-bottom: 1px solid rgba(212,134,42,0.2); }
+  .tab-btn { background: none; border: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; padding: 0.7rem 1.5rem; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.3s; }
+  .tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
+  .tab-btn:hover { color: var(--cream); }
+  .menu-items { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 2rem; }
+  .menu-item { padding: 1.5rem 1rem; border-bottom: 1px solid rgba(212,134,42,0.1); transition: background 0.2s; }
+  .menu-item:hover { background: rgba(212,134,42,0.04); }
+  .menu-item-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .menu-item-name { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); }
+  .menu-item-price { font-size: 1rem; color: var(--amber); font-weight: 600; flex-shrink: 0; }
+  .menu-item-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-top: 0.3rem; }
+  .menu-tag { display: inline-block; font-size: 0.65rem; padding: 0.1rem 0.5rem; border-radius: 3px; margin-top: 0.4rem; font-weight: 600; }
+  .tag-chef { background: rgba(212,134,42,0.15); color: var(--amber); }
+  .tag-veg { background: rgba(74,150,74,0.15); color: #4a964a; }
+
+  /* AMBIENCE */
+  .ambience { padding: 7rem 6%; background: var(--deep); }
+  .ambience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .ambience-text p { font-size: 0.95rem; color: rgba(245,237,224,0.65); line-height: 1.9; margin-top: 1rem; }
+  .ambience-features { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .ambi-feat { padding: 1.2rem; border: 1px solid rgba(212,134,42,0.15); }
+  .ambi-feat-icon { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
+  .ambi-feat-name { font-size: 0.82rem; font-weight: 600; color: var(--cream); }
+  .ambi-feat-desc { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+  .ambience-mosaic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; gap: 0.8rem; }
+  .mosaic-tile { border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+  .mosaic-tile:nth-child(1) { background: linear-gradient(135deg, #1f3829, #2d5040); grid-row: span 2; }
+  .mosaic-tile:nth-child(2) { background: linear-gradient(135deg, #2a1a0a, #4a3010); }
+  .mosaic-tile:nth-child(3) { background: linear-gradient(135deg, #1a0e0a, #3a1c10); }
+
+  /* RESERVATION */
+  .reservation { padding: 7rem 6%; background: var(--mid-green); }
+  .reservation-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .res-info .sec-title { color: var(--cream); }
+  .res-info p { color: rgba(245,237,224,0.6); font-size: 0.9rem; line-height: 1.8; margin-top: 0.8rem; }
+  .res-hours { margin-top: 2rem; }
+  .res-hours h4 { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; }
+  .res-hour-row { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid rgba(212,134,42,0.12); font-size: 0.85rem; color: rgba(245,237,224,0.7); }
+  .res-hour-row span:last-child { color: var(--amber); }
+  .res-form { background: rgba(0,0,0,0.2); padding: 2.5rem; }
+  .res-form h3 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; color: var(--cream); margin-bottom: 1.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .r-input { padding: 0.8rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,134,42,0.2); color: var(--cream); font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; outline: none; margin-bottom: 1rem; width: 100%; transition: border-color 0.3s; }
+  .r-input::placeholder { color: rgba(245,237,224,0.3); }
+  .r-input:focus { border-color: var(--amber); }
+  .r-submit { background: var(--amber); color: var(--deep); width: 100%; padding: 1rem; border: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-top: 0.5rem; }
+  .r-submit:hover { background: var(--amber-light); }
+
+  /* FOOTER */
+  footer { background: var(--deep); padding: 2.5rem 6%; border-top: 1px solid rgba(212,134,42,0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .foot-logo { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; color: var(--amber); letter-spacing: 4px; }
+  .foot-links { display: flex; gap: 2rem; }
+  .foot-links a { font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+  .foot-links a:hover { color: var(--amber); }
+  .foot-copy { font-size: 0.72rem; color: rgba(245,237,224,0.2); }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-reserve { display: none; }
+    .hamburger { display: flex; }
+    .hero-right { display: none; }
+    .menu-items { grid-template-columns: 1fr; }
+    .ambience-grid, .reservation-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .foot-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="logo">EMBERS</div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#ambience">Experience</a></li>
+    <li><a href="#reservation">Reserve</a></li>
+  </ul>
+  <button class="nav-reserve">Reserve a Table</button>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#menu" onclick="toggleMenu()">Menu</a>
+  <a href="#ambience" onclick="toggleMenu()">Experience</a>
+  <a href="#reservation" onclick="toggleMenu()">Reserve a Table</a>
+</div>
+
+<section class="hero">
+  <div class="hero-video-bg"></div>
+  <div class="hero-grill-lines"></div>
+  <div class="hero-content">
+    <p class="hero-pretext">Open Tues – Sun · Downtown</p>
+    <h1>FIRE.<br>FLAVOUR.<br><em>Memory.</em></h1>
+    <div class="hero-divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">Modern Grill & Bar</span>
+      <div class="divider-line"></div>
+    </div>
+    <p class="hero-desc">Embers brings together open-fire cooking, seasonal ingredients, and a curated cellar in an intimate setting made for unforgettable evenings.</p>
+    <div class="hero-actions">
+      <button class="btn-amber">Reserve a Table</button>
+      <button class="btn-border">View Our Menu</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hr-item"><div class="hr-num">★ 4.9</div><div class="hr-label">Rating</div></div>
+    <div class="hr-item"><div class="hr-num">8yr</div><div class="hr-label">Established</div></div>
+    <div class="hr-item"><div class="hr-num">3</div><div class="hr-label">Michelin Stars</div></div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">OPEN FIRE GRILL <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">SEASONAL MENU <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">CRAFT COCKTAILS <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">PRIVATE DINING <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">AWARD WINNING <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">OPEN FIRE GRILL <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">SEASONAL MENU <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">CRAFT COCKTAILS <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">PRIVATE DINING <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">AWARD WINNING <span class="ticker-sep">✦</span></span>
+  </div>
+</div>
+
+<section class="menu-section" id="menu">
+  <div class="menu-header">
+    <div>
+      <p class="sec-label">Spring Collection</p>
+      <h2 class="sec-title">Taste Our <em>Craft</em></h2>
+    </div>
+  </div>
+  <div class="menu-tabs">
+    <button class="tab-btn active">Starters</button>
+    <button class="tab-btn">Mains</button>
+    <button class="tab-btn">Desserts</button>
+    <button class="tab-btn">Drinks</button>
+  </div>
+  <div class="menu-items">
+    <div class="menu-item">
+      <div class="menu-item-top">
+        <span class="menu-item-name">Ember-Roasted Bone Marrow</span>
+        <span class="menu-item-price">£18</span>
+      </div>
+      <div class="menu-item-desc">Dry-aged beef marrow, sourdough soldiers, gremolata, pickled shallots</div>
+      <span class="menu-tag tag-chef">Chef's Pick</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-top">
+        <span class="menu-item-name">Burrata & Heirloom Tomato</span>
+        <span class="menu-item-price">£14</span>
+      </div>
+      <div class="menu-item-desc">Cold-pressed olive oil, basil oil, aged balsamic, fleur de sel</div>
+      <span class="menu-tag tag-veg">Vegetarian</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-top">
+        <span class="menu-item-name">Smoked Salmon Tartare</span>
+        <span class="menu-item-price">£16</span>
+      </div>
+      <div class="menu-item-desc">Cold-smoked salmon, caper cream, cucumber, brioche crisps, caviar</div>
+      <span class="menu-tag tag-chef">Chef's Pick</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-top">
+        <span class="menu-item-name">Butternut Velouté</span>
+        <span class="menu-item-price">£11</span>
+      </div>
+      <div class="menu-item-desc">Roasted butternut, toasted pepita, herb oil, crème fraîche</div>
+      <span class="menu-tag tag-veg">Vegetarian</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-top">
+        <span class="menu-item-name">Crispy Pork Belly Skewer</span>
+        <span class="menu-item-price">£15</span>
+      </div>
+      <div class="menu-item-desc">48hr brined pork belly, apple purée, charred spring onion, miso glaze</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-top">
+        <span class="menu-item-name">Whipped Ricotta Crostini</span>
+        <span class="menu-item-price">£12</span>
+      </div>
+      <div class="menu-item-desc">House ricotta, wild mushroom duxelles, truffle honey, walnut crumb</div>
+      <span class="menu-tag tag-veg">Vegetarian</span>
+    </div>
+  </div>
+</section>
+
+<section class="ambience" id="ambience">
+  <div class="ambience-grid">
+    <div class="ambience-text">
+      <p class="sec-label">The Space</p>
+      <h2 class="sec-title">A Night to <em>Remember</em></h2>
+      <p>Embers is more than a restaurant — it's a destination. Our intimate 60-seat space wraps around an open central grill, creating a dining theatre where fire, smoke, and flavour tell a story with every dish.</p>
+      <div class="ambience-features">
+        <div class="ambi-feat">
+          <span class="ambi-feat-icon">🔥</span>
+          <div class="ambi-feat-name">Open Grill Kitchen</div>
+          <div class="ambi-feat-desc">Watch chefs work over live fire</div>
+        </div>
+        <div class="ambi-feat">
+          <span class="ambi-feat-icon">🍷</span>
+          <div class="ambi-feat-name">600+ Label Cellar</div>
+          <div class="ambi-feat-desc">Sommelier-curated wine list</div>
+        </div>
+        <div class="ambi-feat">
+          <span class="ambi-feat-icon">🎵</span>
+          <div class="ambi-feat-name">Live Jazz Fridays</div>
+          <div class="ambi-feat-desc">Monthly resident performances</div>
+        </div>
+        <div class="ambi-feat">
+          <span class="ambi-feat-icon">🎂</span>
+          <div class="ambi-feat-name">Private Events</div>
+          <div class="ambi-feat-desc">Exclusive buyouts available</div>
+        </div>
+      </div>
+    </div>
+    <div class="ambience-mosaic">
+      <div class="mosaic-tile">🔥</div>
+      <div class="mosaic-tile">🍽️</div>
+      <div class="mosaic-tile">🥩</div>
+    </div>
+  </div>
+</section>
+
+<section class="reservation" id="reservation">
+  <div class="reservation-inner">
+    <div class="res-info">
+      <p class="sec-label">Join Us</p>
+      <h2 class="sec-title">Make a <em>Reservation</em></h2>
+      <p>Tables are in high demand. We recommend booking at least 2 weeks in advance, especially for weekends.</p>
+      <div class="res-hours">
+        <h4>Opening Hours</h4>
+        <div class="res-hour-row"><span>Tuesday – Thursday</span><span>6:00pm – 10:30pm</span></div>
+        <div class="res-hour-row"><span>Friday – Saturday</span><span>5:30pm – 11:30pm</span></div>
+        <div class="res-hour-row"><span>Sunday</span><span>12:00pm – 9:00pm</span></div>
+        <div class="res-hour-row"><span>Monday</span><span>Closed</span></div>
+      </div>
+    </div>
+    <div class="res-form">
+      <h3>Reserve Your Table</h3>
+      <div class="form-row">
+        <input class="r-input" type="text" placeholder="First Name">
+        <input class="r-input" type="text" placeholder="Last Name">
+      </div>
+      <input class="r-input" type="email" placeholder="Email Address" style="width:100%">
+      <input class="r-input" type="tel" placeholder="Phone Number" style="width:100%">
+      <div class="form-row">
+        <input class="r-input" type="date">
+        <select class="r-input" style="cursor:pointer;">
+          <option style="color:#333">Time</option>
+          <option>5:30 PM</option>
+          <option>6:00 PM</option>
+          <option>6:30 PM</option>
+          <option>7:00 PM</option>
+          <option>7:30 PM</option>
+          <option>8:00 PM</option>
+          <option>8:30 PM</option>
+          <option>9:00 PM</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <select class="r-input" style="cursor:pointer;">
+          <option style="color:#333">Guests</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7+</option>
+        </select>
+        <select class="r-input" style="cursor:pointer;">
+          <option style="color:#333">Occasion</option>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Business Dinner</option>
+          <option>Date Night</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button class="r-submit">Confirm Reservation →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">EMBERS</div>
+  <div class="foot-links">
+    <a href="#">Menu</a>
+    <a href="#">Reservations</a>
+    <a href="#">Private Events</a>
+    <a href="#">Gift Cards</a>
+  </div>
+  <div class="foot-copy">© 2025 Embers Restaurant. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
