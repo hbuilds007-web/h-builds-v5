@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRATA — Luxury Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f0ebe2;
+    --warm-white: #faf8f5;
+    --terracotta: #b5583a;
+    --terracotta-dark: #8c3d24;
+    --stone: #3d3530;
+    --stone-light: #6b5e56;
+    --sage: #6b7c6a;
+    --gold: #c4a35a;
+    --black: #1a1512;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--warm-white); color: var(--stone); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(250,248,245,0.96); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(61,53,48,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 6%; height: 72px;
+  }
+  .logo { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 700; color: var(--stone); letter-spacing: 4px; text-transform: uppercase; }
+  .logo span { color: var(--terracotta); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--stone-light); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-btn { background: var(--terracotta); color: var(--white); padding: 0.6rem 1.5rem; border: none; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit', sans-serif; cursor: pointer; transition: all 0.3s; }
+  .nav-btn:hover { background: var(--terracotta-dark); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--stone); }
+  .mobile-menu { display: none; position: fixed; top: 72px; left: 0; width: 100%; background: var(--warm-white); padding: 2rem 6%; z-index: 99; flex-direction: column; gap: 1.5rem; border-top: 1px solid rgba(61,53,48,0.1); }
+  .mobile-menu a { color: var(--stone); text-decoration: none; font-size: 1rem; font-weight: 500; }
+  .mobile-menu.open { display: flex; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; position: relative; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 0 6% 8%;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #2d2520 0%, #1a1512 40%, #3d2518 100%);
+  }
+  .hero-shapes {
+    position: absolute; inset: 0;
+  }
+  .hero-shapes::before {
+    content: ''; position: absolute; right: -100px; top: -100px;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(181,88,58,0.25), transparent 70%);
+  }
+  .hero-shapes::after {
+    content: ''; position: absolute; left: 30%; bottom: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,163,90,0.12), transparent 70%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 750px; }
+  .hero-tag { display: inline-block; background: rgba(181,88,58,0.2); border: 1px solid rgba(181,88,58,0.4); color: var(--terracotta); font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; padding: 0.3rem 0.9rem; margin-bottom: 1.5rem; animation: rise 0.8s ease both; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 300; color: var(--white); line-height: 1.0; animation: rise 0.8s 0.15s ease both; }
+  .hero h1 strong { font-weight: 700; display: block; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 420px; line-height: 1.8; margin-top: 1.5rem; animation: rise 0.8s 0.3s ease both; }
+  .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; animation: rise 0.8s 0.45s ease both; }
+  .btn-terra { background: var(--terracotta); color: white; padding: 1rem 2.5rem; border: none; font-size: 0.88rem; font-weight: 600; font-family: 'Outfit', sans-serif; cursor: pointer; transition: all 0.3s; }
+  .btn-terra:hover { background: var(--terracotta-dark); transform: translateY(-2px); }
+  .hero-scroll { position: absolute; right: 6%; bottom: 8%; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; animation: rise 0.8s 0.6s ease both; }
+  .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); }
+  .scroll-text { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.35); writing-mode: vertical-rl; }
+  .hero-stats { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 2rem; z-index: 1; animation: rise 0.8s 0.6s ease both; }
+  .hstat { text-align: right; }
+  .hstat-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .hstat-label { font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  @keyframes rise { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SEARCH BAR */
+  .search-bar { background: var(--white); padding: 2.5rem 6%; box-shadow: 0 4px 30px rgba(0,0,0,0.06); }
+  .search-inner { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .search-field { flex: 1; min-width: 160px; }
+  .search-field label { display: block; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--stone-light); margin-bottom: 0.3rem; }
+  .search-field input, .search-field select {
+    width: 100%; padding: 0.7rem 0; border: none; border-bottom: 2px solid rgba(61,53,48,0.15);
+    background: transparent; font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--stone);
+    outline: none; transition: border-color 0.3s;
+  }
+  .search-field input:focus, .search-field select:focus { border-bottom-color: var(--terracotta); }
+  .search-btn { background: var(--terracotta); color: white; padding: 1rem 2rem; border: none; font-size: 0.85rem; font-weight: 600; font-family: 'Outfit', sans-serif; cursor: pointer; white-space: nowrap; margin-top: 1.2rem; transition: background 0.3s; }
+  .search-btn:hover { background: var(--terracotta-dark); }
+
+  /* FEATURED */
+  .featured { padding: 6rem 6%; background: var(--warm-white); }
+  .section-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+  .sec-label { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.3rem; font-weight: 600; }
+  .sec-heading { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--stone); line-height: 1.1; }
+  .sec-heading em { font-style: italic; color: var(--terracotta); font-weight: 300; }
+  .view-all { font-size: 0.83rem; color: var(--terracotta); font-weight: 600; cursor: pointer; text-decoration: none; border-bottom: 1px solid var(--terracotta); padding-bottom: 2px; }
+  .properties-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .prop-card { background: var(--white); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+  .prop-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(61,53,48,0.12); }
+  .prop-img {
+    height: 260px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #c4a35a22, #b5583a22);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .prop-img-bg { position: absolute; inset: 0; background: linear-gradient(160deg, var(--sand), #d4c9b8); }
+  .prop-img-emoji { position: relative; z-index: 1; }
+  .prop-badge { position: absolute; top: 1rem; left: 1rem; background: var(--terracotta); color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 0.3rem 0.7rem; z-index: 2; }
+  .prop-info { padding: 1.5rem; }
+  .prop-price { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 700; color: var(--stone); }
+  .prop-address { font-size: 0.85rem; color: var(--stone-light); margin-top: 0.3rem; }
+  .prop-details { display: flex; gap: 1.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(61,53,48,0.07); }
+  .prop-detail { font-size: 0.82rem; color: var(--stone-light); }
+  .prop-detail strong { display: block; font-size: 0.95rem; color: var(--stone); font-weight: 600; }
+
+  /* SERVICES */
+  .services { padding: 6rem 6%; background: var(--sand); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .srv-card { background: var(--white); padding: 2.2rem; transition: all 0.3s; }
+  .srv-card:hover { background: var(--terracotta); }
+  .srv-card:hover .srv-title { color: white; }
+  .srv-card:hover .srv-desc { color: rgba(255,255,255,0.75); }
+  .srv-card:hover .srv-icon { background: rgba(255,255,255,0.15); }
+  .srv-icon { width: 50px; height: 50px; background: var(--sand); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem; transition: background 0.3s; }
+  .srv-title { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; color: var(--stone); transition: color 0.3s; }
+  .srv-desc { font-size: 0.83rem; color: var(--stone-light); line-height: 1.6; margin-top: 0.5rem; transition: color 0.3s; }
+
+  /* CTA */
+  .cta { padding: 7rem 6%; background: var(--stone); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .cta .sec-heading { color: var(--white); }
+  .cta .sec-label { color: var(--gold); }
+  .cta p { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.8; margin-top: 1rem; }
+  .cta-form { display: flex; flex-direction: column; gap: 0.9rem; }
+  .cta-input { padding: 0.9rem 1.2rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem; outline: none; }
+  .cta-input::placeholder { color: rgba(255,255,255,0.35); }
+  .cta-input:focus { border-color: var(--terracotta); }
+  .cta-submit { background: var(--terracotta); color: white; padding: 1rem; border: none; font-family: 'Outfit', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+  .cta-submit:hover { background: var(--terracotta-dark); }
+
+  /* FOOTER */
+  footer { background: var(--black); padding: 2.5rem 6%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .foot-logo { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); letter-spacing: 3px; }
+  .foot-logo span { color: var(--terracotta); }
+  .foot-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-btn { display: none; }
+    .hamburger { display: flex; }
+    .hero-stats { display: none; }
+    .hero-scroll { display: none; }
+    .cta { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">ST<span>R</span>ATA</div>
+  <ul class="nav-links">
+    <li><a href="#featured">Properties</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-btn">List Your Property</button>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#featured" onclick="toggleMenu()">Properties</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-shapes"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Luxury Real Estate</div>
+    <h1>Find Where<br><strong>Life</strong><br><em>Flourishes</em></h1>
+    <p class="hero-sub">Curated properties in the world's most desirable locations. Strata brings buyers and exceptional homes together.</p>
+    <div class="hero-cta">
+      <button class="btn-terra">Browse Properties</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">1,200+</div><div class="hstat-label">Properties Listed</div></div>
+    <div class="hstat"><div class="hstat-num">$2.4B</div><div class="hstat-label">Total Sales</div></div>
+    <div class="hstat"><div class="hstat-num">22yr</div><div class="hstat-label">Experience</div></div>
+  </div>
+</section>
+
+<div class="search-bar">
+  <div class="search-inner">
+    <div class="search-field">
+      <label>Location</label>
+      <input type="text" placeholder="City, neighborhood or zip">
+    </div>
+    <div class="search-field">
+      <label>Type</label>
+      <select>
+        <option>All Types</option>
+        <option>House</option>
+        <option>Apartment</option>
+        <option>Penthouse</option>
+        <option>Land</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label>Budget</label>
+      <select>
+        <option>Any Price</option>
+        <option>Up to $500K</option>
+        <option>$500K – $1M</option>
+        <option>$1M – $3M</option>
+        <option>$3M+</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label>Bedrooms</label>
+      <select>
+        <option>Any</option>
+        <option>1+</option>
+        <option>2+</option>
+        <option>3+</option>
+        <option>4+</option>
+      </select>
+    </div>
+    <button class="search-btn">Search →</button>
+  </div>
+</div>
+
+<section class="featured" id="featured">
+  <div class="section-top">
+    <div>
+      <p class="sec-label">Premium Selection</p>
+      <h2 class="sec-heading">Featured <em>Properties</em></h2>
+    </div>
+    <a class="view-all" href="#">View All Listings</a>
+  </div>
+  <div class="properties-grid">
+    <div class="prop-card">
+      <div class="prop-img">
+        <div class="prop-img-bg"></div>
+        <span class="prop-img-emoji">🏡</span>
+        <div class="prop-badge">For Sale</div>
+      </div>
+      <div class="prop-info">
+        <div class="prop-price">$2,450,000</div>
+        <div class="prop-address">42 Kensington Rise, London W8</div>
+        <div class="prop-details">
+          <div class="prop-detail"><strong>4</strong> Beds</div>
+          <div class="prop-detail"><strong>3</strong> Baths</div>
+          <div class="prop-detail"><strong>2,800</strong> sq ft</div>
+        </div>
+      </div>
+    </div>
+    <div class="prop-card">
+      <div class="prop-img">
+        <div class="prop-img-bg" style="background:linear-gradient(160deg,#c9b99a,#e8dfd0)"></div>
+        <span class="prop-img-emoji">🏢</span>
+        <div class="prop-badge">New</div>
+      </div>
+      <div class="prop-info">
+        <div class="prop-price">$890,000</div>
+        <div class="prop-address">Penthouse 12, The Arches, NY</div>
+        <div class="prop-details">
+          <div class="prop-detail"><strong>2</strong> Beds</div>
+          <div class="prop-detail"><strong>2</strong> Baths</div>
+          <div class="prop-detail"><strong>1,400</strong> sq ft</div>
+        </div>
+      </div>
+    </div>
+    <div class="prop-card">
+      <div class="prop-img">
+        <div class="prop-img-bg" style="background:linear-gradient(160deg,#b5c4b0,#d4ddd2)"></div>
+        <span class="prop-img-emoji">🏠</span>
+        <div class="prop-badge">Featured</div>
+      </div>
+      <div class="prop-info">
+        <div class="prop-price">$4,100,000</div>
+        <div class="prop-address">Sunset Ridge Estate, Malibu CA</div>
+        <div class="prop-details">
+          <div class="prop-detail"><strong>6</strong> Beds</div>
+          <div class="prop-detail"><strong>5</strong> Baths</div>
+          <div class="prop-detail"><strong>5,200</strong> sq ft</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <p class="sec-label">How We Help</p>
+  <h2 class="sec-heading">Full-Service <em>Real Estate</em></h2>
+  <div class="services-grid">
+    <div class="srv-card">
+      <div class="srv-icon">🏠</div>
+      <div class="srv-title">Buyer Representation</div>
+      <div class="srv-desc">Expert guidance from search to close, securing the best terms on your behalf.</div>
+    </div>
+    <div class="srv-card">
+      <div class="srv-icon">📋</div>
+      <div class="srv-title">Property Selling</div>
+      <div class="srv-desc">Strategic pricing, professional staging, and maximum market exposure.</div>
+    </div>
+    <div class="srv-card">
+      <div class="srv-icon">📊</div>
+      <div class="srv-title">Investment Advisory</div>
+      <div class="srv-desc">Identifying high-yield opportunities in the residential and commercial sectors.</div>
+    </div>
+    <div class="srv-card">
+      <div class="srv-icon">🔑</div>
+      <div class="srv-title">Property Management</div>
+      <div class="srv-desc">Complete management of rental properties: tenants, maintenance, and reporting.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div>
+    <p class="sec-label">Work With Us</p>
+    <h2 class="sec-heading">Ready to Find Your <em>Dream Home?</em></h2>
+    <p>Let our expert agents guide you. Whether buying, selling, or investing — we make the process seamless.</p>
+  </div>
+  <div class="cta-form">
+    <input class="cta-input" type="text" placeholder="Your Name">
+    <input class="cta-input" type="email" placeholder="Email Address">
+    <input class="cta-input" type="tel" placeholder="Phone">
+    <select class="cta-input" style="cursor:pointer;">
+      <option style="color:#333">I'm looking to...</option>
+      <option>Buy a Property</option>
+      <option>Sell a Property</option>
+      <option>Invest</option>
+      <option>Rent</option>
+    </select>
+    <button class="cta-submit">Get in Touch →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">ST<span>R</span>ATA</div>
+  <div class="foot-copy">© 2025 Strata Real Estate. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
