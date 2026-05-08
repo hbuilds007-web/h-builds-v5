@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stonebridge Build | Extensions & Renovations | West Midlands</title>
+<meta name="description" content="Stonebridge Build — West Midlands building contractors specialising in home extensions, loft conversions, kitchen and bathroom renovations. Federation of Master Builders accredited. Get a free quote.">
+<meta property="og:title" content="Stonebridge Build | West Midlands Building Contractors">
+<meta property="og:description" content="Extensions, loft conversions, renovations. FMB accredited builders covering the West Midlands. Quality craftsmanship, transparent pricing.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --concrete: #2e2e2e;
+    --concrete-dark: #1a1a1a;
+    --concrete-mid: #383838;
+    --concrete-light: #4a4a4a;
+    --rust: #b84c1a;
+    --rust-light: #d45e28;
+    --cream: #f0ebe3;
+    --cream-dark: #e0d9cf;
+    --text-muted: #888;
+    --border: rgba(255,255,255,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--concrete-dark); color: #f0ebe3; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(26,26,26,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--cream); }
+  .logo span { color: var(--rust); }
+  .nav-cta {
+    background: var(--rust); color: var(--cream);
+    padding: 0.6rem 1.4rem; text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--rust-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; position: relative;
+    background: var(--concrete-dark);
+    display: flex; align-items: flex-end;
+    padding-top: 80px; overflow: hidden;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-accent {
+    position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+    background: linear-gradient(135deg, transparent 30%, rgba(184,76,26,0.08) 100%);
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    padding: 4rem 2.5rem 5rem;
+    max-width: 1100px; margin: 0 auto; width: 100%;
+  }
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    border-left: 3px solid var(--rust); padding-left: 1rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--rust);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900; line-height: 0.95;
+    color: var(--cream); margin-bottom: 2rem;
+    max-width: 750px;
+  }
+  .hero h1 em { font-style: italic; color: var(--rust); }
+  .hero-bottom { display: flex; align-items: flex-end; gap: 4rem; flex-wrap: wrap; }
+  .hero p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; max-width: 420px; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rust); color: var(--cream);
+    padding: 1rem 2rem; text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--rust-light); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid rgba(240,235,227,0.25); color: var(--cream);
+    padding: 1rem 2rem; text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--rust); color: var(--rust); }
+
+  /* FMB STRIP */
+  .fmb-strip {
+    background: var(--rust); padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .fmb-strip p { font-size: 0.9rem; font-weight: 500; }
+  .fmb-badge { background: rgba(255,255,255,0.15); padding: 0.3rem 1rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; }
+
+  /* SHARED */
+  section { padding: 5rem 2.5rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.8rem; }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 1rem; color: var(--cream); }
+  .section-sub { color: var(--text-muted); font-size: 1rem; max-width: 460px; line-height: 1.7; margin-bottom: 3rem; font-weight: 300; }
+
+  /* SERVICES */
+  .services { background: var(--concrete-mid); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1px; background: rgba(255,255,255,0.05); }
+  .service-card { background: var(--concrete-mid); padding: 2.5rem 2rem; transition: background 0.2s; border-bottom: 2px solid transparent; }
+  .service-card:hover { background: var(--concrete-light); border-bottom-color: var(--rust); }
+  .svc-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--cream); }
+  .service-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; font-weight: 300; }
+
+  /* PROJECTS */
+  .projects { background: var(--concrete-dark); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; }
+  .project-card { background: var(--concrete-mid); overflow: hidden; }
+  .project-split { display: grid; grid-template-columns: 1fr 1fr; }
+  .project-half {
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; position: relative; overflow: hidden;
+  }
+  .project-half.before { background: var(--concrete-light); }
+  .project-half.after { background: linear-gradient(135deg, var(--concrete-mid), var(--concrete-light)); }
+  .project-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0.3rem 0.6rem; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(0,0,0,0.5);
+  }
+  .project-half.after .project-label { background: var(--rust); }
+  .project-info { padding: 1.5rem; }
+  .project-info h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .project-info p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; font-weight: 300; }
+  .project-tag { display: inline-block; background: rgba(184,76,26,0.15); color: var(--rust); font-size: 0.75rem; padding: 0.2rem 0.6rem; margin-top: 0.8rem; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--concrete-mid); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.5rem; }
+  .testimonial { background: var(--concrete-dark); padding: 2rem; }
+  .stars { color: var(--rust); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .testimonial p { color: #c4bdb4; font-size: 0.92rem; line-height: 1.7; font-style: italic; margin-bottom: 1.2rem; font-weight: 300; }
+  .t-author strong { display: block; font-size: 0.9rem; color: var(--cream); }
+  .t-author span { font-size: 0.82rem; color: var(--text-muted); }
+
+  /* CONTACT */
+  .contact { background: var(--concrete-dark); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 700px; }
+  @media(max-width:600px){ .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1/-1; }
+  label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  input, select, textarea {
+    background: var(--concrete-mid); border: 1px solid rgba(255,255,255,0.08);
+    color: var(--cream); padding: 0.9rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--rust); }
+  select option { background: var(--concrete-mid); }
+  textarea { resize: vertical; min-height: 110px; }
+  .success-msg { display: none; background: var(--rust); color: var(--cream); padding: 1rem 1.5rem; font-weight: 500; margin-top: 1rem; font-size: 0.9rem; }
+
+  footer { background: #0f0f0f; padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  footer a { color: var(--rust); text-decoration: none; }
+
+  @media(max-width:768px){ nav { padding: 1rem 1.2rem; } section { padding: 3.5rem 1.2rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Stone<span>bridge</span> Build</div>
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-inner">
+    <div class="hero-kicker">Federation of Master Builders · West Midlands</div>
+    <h1>Built to<br><em>Last.</em></h1>
+    <div class="hero-bottom">
+      <div>
+        <p>Extensions, loft conversions, renovations, and groundworks. Quality building work delivered on time, on budget, and to the highest standard.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn-primary">Request a Free Quote</a>
+          <a href="#services" class="btn-ghost">View Services</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fmb-strip">
+  <p>🏆 Proud members of the <strong>Federation of Master Builders</strong></p>
+  <div class="fmb-badge">FMB Accredited</div>
+  <p>Fully insured · Transparent contracts · Fixed-price quotes</p>
+</div>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label">Services</div>
+    <h2>What We Build</h2>
+    <p class="section-sub">From single-storey extensions to full renovations — we manage the entire project, start to finish, with no subcontractor surprises.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="svc-icon">🏠</div><h3>Home Extensions</h3><p>Single and double-storey extensions designed to blend seamlessly with your existing property. Planning, build, and finish all handled in-house.</p></div>
+      <div class="service-card"><div class="svc-icon">📐</div><h3>Loft Conversions</h3><p>Dormers, hip-to-gables, and Velux conversions. We maximise the usable space and handle all building regulations sign-off.</p></div>
+      <div class="service-card"><div class="svc-icon">🍳</div><h3>Kitchen Fitting</h3><p>Full kitchen installations from unit assembly to worktops, splashbacks, and appliance plumbing. Trade pricing passed on to clients.</p></div>
+      <div class="service-card"><div class="svc-icon">🛁</div><h3>Bathroom Renovation</h3><p>Wet rooms, en-suites, family bathrooms. Tiling, plumbing coordination, and full finish to a high standard.</p></div>
+      <div class="service-card"><div class="svc-icon">🧱</div><h3>Brickwork & Repointing</h3><p>New builds, garden walls, chimney repairs, and repointing work. Matched brickwork for extensions and repairs that look original.</p></div>
+      <div class="service-card"><div class="svc-icon">⛏️</div><h3>Groundworks & Driveways</h3><p>Foundations, drainage, block paving, and concrete driveways. Groundworks carried out with our own plant and operators.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="projects">
+  <div class="container">
+    <div class="section-label">Our Work</div>
+    <h2>Recent Projects</h2>
+    <p class="section-sub">A selection of recent builds and renovations completed across the West Midlands.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-split">
+          <div class="project-half before"><span>🏠</span><div class="project-label">Before</div></div>
+          <div class="project-half after"><span>🏡</span><div class="project-label">After</div></div>
+        </div>
+        <div class="project-info">
+          <h4>Kitchen Extension, Harborne</h4>
+          <p>Single-storey rear extension adding 28m² open-plan kitchen-diner. Bi-fold doors, lantern roof, underfloor heating.</p>
+          <span class="project-tag">Extension</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-split">
+          <div class="project-half before"><span>🏚️</span><div class="project-label">Before</div></div>
+          <div class="project-half after"><span>🛏️</span><div class="project-label">After</div></div>
+        </div>
+        <div class="project-info">
+          <h4>Loft Conversion, Solihull</h4>
+          <p>Full dormer loft conversion with two bedrooms, en-suite, and Velux windows. Completed in 9 weeks.</p>
+          <span class="project-tag">Loft Conversion</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-split">
+          <div class="project-half before"><span>🧱</span><div class="project-label">Before</div></div>
+          <div class="project-half after"><span>🍳</span><div class="project-label">After</div></div>
+        </div>
+        <div class="project-info">
+          <h4>Full Kitchen Renovation, Wolverhampton</h4>
+          <p>Complete strip-out and refurb including new layout, quartz worktops, integrated appliances and tiled floor.</p>
+          <span class="project-tag">Renovation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">Client Feedback</div>
+    <h2>What Clients Say</h2>
+    <div class="testimonials-grid" style="margin-top:2.5rem">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Stonebridge built our rear extension and it's transformed how we use the house. They were on site every day, communicated throughout, and the finish is absolutely superb."</p>
+        <div class="t-author"><strong>Sarah & Paul W.</strong><span>Harborne, Birmingham</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"We'd had bad experiences with builders before. Stonebridge were a revelation — fixed price, no drama, finished clean. Our loft conversion is better than we imagined."</p>
+        <div class="t-author"><strong>Thomas B.</strong><span>Solihull</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"From the first quote to handover, professionalism throughout. The kitchen looks incredible and the guys were respectful of our home the entire time. Couldn't recommend more highly."</p>
+        <div class="t-author"><strong>Anya P.</strong><span>Wolverhampton</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">Free Quote</div>
+    <h2>Start Your Project</h2>
+    <p class="section-sub">Tell us about your project and we'll arrange a free site visit and written quote within 5 working days.</p>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-grid">
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="07700 000000" required></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+        <div class="form-group">
+          <label>Project Type</label>
+          <select required>
+            <option value="">Select project type</option>
+            <option>Home Extension</option>
+            <option>Loft Conversion</option>
+            <option>Kitchen Fitting</option>
+            <option>Bathroom Renovation</option>
+            <option>Brickwork / Repointing</option>
+            <option>Groundworks / Driveway</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Approximate Budget</label>
+          <select>
+            <option value="">Select budget range</option>
+            <option>Under £10,000</option>
+            <option>£10,000 – £25,000</option>
+            <option>£25,000 – £50,000</option>
+            <option>£50,000 – £100,000</option>
+            <option>Over £100,000</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Rough Timeline</label>
+          <select>
+            <option value="">When do you want to start?</option>
+            <option>As soon as possible</option>
+            <option>Within 3 months</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>Planning phase only</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Tell Us About the Project</label><textarea placeholder="Describe what you're looking to build or renovate..."></textarea></div>
+        <div class="form-group full"><button type="submit" class="btn-primary" style="cursor:pointer;width:100%">Request Free Quote →</button></div>
+      </div>
+      <div class="success-msg" id="successMsg">✅ Quote request received — we'll be in touch within 2 working days.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Stonebridge Build Ltd · FMB Member · <a href="tel:01213501234">0121 350 1234</a> · West Midlands</p>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('successMsg').style.display = 'block';
+  e.target.reset();
+  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 6000);
+}
+</script>
+</body>
+</html>
